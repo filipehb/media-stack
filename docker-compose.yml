@@ -75,8 +75,8 @@ services:
       - TZ=UTC
       - WEBUI_PORT=5080
     volumes:
-      - /media/qbittorrent-config:/config
-      - /media/torrent-downloads:/downloads
+      - /media/media-server/BACKUP/qbittorrent-config:/config
+      - /media/media-server/BACKUP/torrent-downloads:/downloads
 
     ## Comment/Disable below ports if VPN is enabled
     ports:
@@ -100,8 +100,27 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - /media/radarr-config:/config
-      - /media/torrent-downloads:/downloads
+      - /media/media-server/BACKUP/radarr-config:/config
+      - /media/media-server/BACKUP/torrent-downloads:/downloads
+    restart: "unless-stopped"
+
+  flaresolverr:
+    container_name: flaresolverr
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    networks:
+      - mynetwork   # Comment this line if VPN is enabled
+    ## Uncomment below lines if VPN is enabled
+    #   mynetwork:
+    #     ipv4_address: ${FLARESOLVERRR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `mynetwork` e.g. 172.20.0.2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    ports:
+      - 8191:8191
+    volumes:
+      - /media/media-server/BACKUP/flaresolverr-config:/config
+      - /media/media-server/BACKUP/torrent-downloads:/downloads
     restart: "unless-stopped"
 
   sonarr:
@@ -117,8 +136,8 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - /media/sonarr-config:/config
-      - /media/torrent-downloads:/downloads
+      - /media/media-server/BACKUP/sonarr-config:/config
+      - /media/media-server/BACKUP/torrent-downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -139,7 +158,7 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - /media/prowlarr-config:/config
+      - /media/media-server/BACKUP/prowlarr-config:/config
 
     # Comment below ports if VPN is enabled.
     ports:
@@ -171,8 +190,8 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - /media/jellyfin-config:/config
-      - /media/torrent-downloads:/data
+      - /media/media-server/BACKUP/jellyfin-config:/config
+      - /media/media-server/BACKUP/torrent-downloads:/data
   # devices:
    #  - /dev/videoN:/dev/videoN # Mount GPU device 
     ports:
@@ -219,6 +238,7 @@ volumes:
   jellyfin-config:
   qbittorrent-config:
   jellyseerr-config:
+  flaresolverr-config:
   # cleanmyarr-config:
 
 networks:
