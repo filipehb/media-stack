@@ -75,7 +75,7 @@ services:
       - TZ=UTC
       - WEBUI_PORT=5080
     volumes:
-      - "${PATH}/qbittorrent-config:/config"
+      - ${PATH}/qbittorrent-config:/config
       - "${PATH}/torrent-downloads:/downloads"
 
     ## Comment/Disable below ports if VPN is enabled
