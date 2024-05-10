@@ -158,7 +158,7 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - "${PATH}/prowlarr-config:/config
+      - "${PATH}/prowlarr-config:/config"
 
     # Comment below ports if VPN is enabled.
     ports:
