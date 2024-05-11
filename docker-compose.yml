@@ -175,7 +175,7 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - jellyseerr-config:/app/config
+      - ${LOCAL_PATH}/jellyseerr-config:/app/config
     ports:
       - 5055:5055
     restart: unless-stopped
