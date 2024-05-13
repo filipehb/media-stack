@@ -139,8 +139,8 @@ services:
       - 6767:6767
     volumes:
       - ${LOCAL_PATH}/bazarr-config:/config
-      - ${LOCAL_PATH}/torrent-downloads/movies:/movies #optional
-      - ${LOCAL_PATH}/torrent-downloads/tvshows:/tv #optional
+      - ${LOCAL_PATH}/torrent-downloads/movies:/downloads/movies #optional
+      - ${LOCAL_PATH}/torrent-downloads/tvshows:/downloads/tv #optional
     restart: "unless-stopped"
 
   sonarr:
