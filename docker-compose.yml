@@ -140,6 +140,8 @@ services:
     volumes:
       - ${LOCAL_PATH}/bazarr-config:/config
       - ${LOCAL_PATH}/torrent-downloads:/data
+      - ${LOCAL_PATH}/torrent-downloads/movies:/movies #optional
+      - ${LOCAL_PATH}/torrent-downloads/tvshows:/tv #optional
     restart: "unless-stopped"
 
   sonarr:
