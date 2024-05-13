@@ -123,6 +123,25 @@ services:
       - ${LOCAL_PATH}/torrent-downloads:/downloads
     restart: "unless-stopped"
 
+  bazarr:
+    container_name: bazarr
+    image: hotio/bazarr:latest
+    networks:
+      - mynetwork   # Comment this line if VPN is enabled
+    ## Uncomment below lines if VPN is enabled
+    #   mynetwork:
+    #     ipv4_address: ${FLARESOLVERRR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `mynetwork` e.g. 172.20.0.2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    ports:
+      - 6767:6767
+    volumes:
+      - ${LOCAL_PATH}/bazarr-config:/config
+      - ${LOCAL_PATH}/torrent-downloads:/data
+    restart: "unless-stopped"
+
   sonarr:
     image: linuxserver/sonarr:4.0.4
     container_name: sonarr
