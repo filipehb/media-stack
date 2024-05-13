@@ -125,7 +125,7 @@ services:
 
   bazarr:
     container_name: bazarr
-    image: hotio/bazarr:latest
+    image: lscr.io/linuxserver/bazarr:latest
     networks:
       - mynetwork   # Comment this line if VPN is enabled
     ## Uncomment below lines if VPN is enabled
