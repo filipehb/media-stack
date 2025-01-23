@@ -41,8 +41,8 @@ services:
     networks:
       - mynetwork
 
-#    devices:
-#      - /dev/net/tun:/dev/net/tun
+    devices:
+      - /dev/net/tun:/dev/net/tun
       
     # Uncomment/enable below ports if VPN is used/enabled
     # ports:
@@ -195,7 +195,7 @@ services:
 
   jellyseerr:
     profiles: ["vpn", "no-vpn"]
-    image: fallenbagel/jellyseerr:2.1.0
+    image: fallenbagel/jellyseerr:2.2.3
     container_name: jellyseerr
     networks:
       - mynetwork
