@@ -6,7 +6,7 @@ services:
     ## Read https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers for details on configuring VPN for your service provider.
     profiles: ["vpn"]
     container_name: vpn
-    image: qmcgaw/gluetun:v3.39.1
+    image: qmcgaw/gluetun:v3.40.0
     cap_add:
       - NET_ADMIN
     environment:
@@ -41,10 +41,8 @@ services:
     networks:
       - mynetwork
 
-    # # Uncomment below when using VPN in an LXC container
-    # # Make sure to mount /dev/net/tun and /dev/net from underlaying host into your LXC.
-    # devices:
-    #   - /dev/net/tun:/dev/net/tun
+    devices:
+      - /dev/net/tun:/dev/net/tun
       
     # Uncomment/enable below ports if VPN is used/enabled
     # ports:
@@ -61,7 +59,7 @@ services:
   qbittorrent:
     profiles: ["vpn", "no-vpn"]
     container_name: qbittorrent
-    image: lscr.io/linuxserver/qbittorrent:5.0.0
+    image: lscr.io/linuxserver/qbittorrent:5.0.3
 
     # Unomment below if vpn is enabled
     # depends_on:               # Uncomment this line if vpn is enabled
@@ -94,7 +92,7 @@ services:
   radarr:
     profiles: ["vpn", "no-vpn"]
     container_name: radarr
-    image: lscr.io/linuxserver/radarr:5.13.1
+    image: lscr.io/linuxserver/radarr:5.16.3
     networks:
       - mynetwork   # Comment this line if VPN is enabled
     ## Uncomment below lines if VPN is enabled
@@ -152,7 +150,7 @@ services:
 
   sonarr:
     profiles: ["vpn", "no-vpn"]
-    image: linuxserver/sonarr:4.0.10
+    image: linuxserver/sonarr:4.0.11
     container_name: sonarr
     networks:
       - mynetwork   # Comment this line if VPN is enabled
@@ -173,7 +171,7 @@ services:
   prowlarr:
     profiles: ["vpn", "no-vpn"]
     container_name: prowlarr
-    image: linuxserver/prowlarr:1.25.4
+    image: linuxserver/prowlarr:1.28.2
 
     # Uncomment below if vpn is enabled
     # depends_on:               # Uncomment this line if vpn is enabled
@@ -197,7 +195,7 @@ services:
 
   jellyseerr:
     profiles: ["vpn", "no-vpn"]
-    image: fallenbagel/jellyseerr:2.0.1
+    image: fallenbagel/jellyseerr:2.2.3
     container_name: jellyseerr
     networks:
       - mynetwork
@@ -213,7 +211,7 @@ services:
 
   jellyfin:
     profiles: ["vpn", "no-vpn"]
-    image: linuxserver/jellyfin:10.9.11
+    image: linuxserver/jellyfin:10.10.3
     container_name: jellyfin
     networks:
       - mynetwork
