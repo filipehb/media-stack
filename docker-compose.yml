@@ -41,8 +41,8 @@ services:
     networks:
       - mynetwork
 
-    devices:
-      - /dev/net/tun:/dev/net/tun
+#    devices:
+#      - /dev/net/tun:/dev/net/tun
       
     # Uncomment/enable below ports if VPN is used/enabled
     # ports:
@@ -79,8 +79,8 @@ services:
       - TZ=UTC
       - WEBUI_PORT=5080
     volumes:
-      - ${LOCAL_PATH}/qbittorrent-config:/config
-      - ${LOCAL_PATH}/torrent-downloads:/downloads
+      - qbittorrent-config:/config
+      - torrent-downloads:/downloads
 
     ## Comment/Disable below ports if VPN is enabled
     ports:
@@ -105,8 +105,8 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - ${LOCAL_PATH}/radarr-config:/config
-      - ${LOCAL_PATH}/torrent-downloads:/downloads
+      - radarr-config:/config
+      - torrent-downloads:/downloads
     restart: "unless-stopped"
 
   flaresolverr:
@@ -124,8 +124,8 @@ services:
     ports:
       - 8191:8191
     volumes:
-      - ${LOCAL_PATH}/flaresolverr-config:/config
-      - ${LOCAL_PATH}/torrent-downloads:/downloads
+      - flaresolverr-config:/config
+      - torrent-downloads:/downloads
     restart: "unless-stopped"
 
   bazarr:
@@ -143,9 +143,9 @@ services:
     ports:
       - 6767:6767
     volumes:
-      - ${LOCAL_PATH}/bazarr-config:/config
-      - ${LOCAL_PATH}/torrent-downloads/movies:/movies #optional
-      - ${LOCAL_PATH}/torrent-downloads/tvshows:/tv #optional
+      - bazarr-config:/config
+      - torrent-downloads/movies:/movies #optional
+      - torrent-downloads/tvshows:/tv #optional
     restart: "unless-stopped"
 
   sonarr:
@@ -162,8 +162,8 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - ${LOCAL_PATH}/sonarr-config:/config
-      - ${LOCAL_PATH}/torrent-downloads:/downloads
+      - sonarr-config:/config
+      - torrent-downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -186,7 +186,7 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - ${LOCAL_PATH}/prowlarr-config:/config
+      - prowlarr-config:/config
 
     # Comment below ports if VPN is enabled.
     ports:
@@ -204,7 +204,7 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - ${LOCAL_PATH}/jellyseerr-config:/app/config
+      - jellyseerr-config:/app/config
     ports:
       - 5055:5055
     restart: unless-stopped
@@ -220,8 +220,8 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - ${LOCAL_PATH}/jellyfin-config:/config
-      - ${LOCAL_PATH}/torrent-downloads:/data
+      - jellyfin-config:/config
+      - torrent-downloads:/data
   # devices:
    #  - /dev/videoN:/dev/videoN # Mount GPU device 
     ports:
